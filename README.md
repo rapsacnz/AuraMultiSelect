@@ -22,3 +22,6 @@ The `handleSelectChangeEvent` method could look like this:
     }
     
 I hope you find this useful :).
+
+What it looks like:
+http://imgur.com/a/zLLi6
