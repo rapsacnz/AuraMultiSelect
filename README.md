@@ -24,7 +24,6 @@ The `handleSelectChangeEvent` method could look like this:
 I hope you find this useful :).
 
 What it looks like:
-<blockquote class="imgur-embed-pub" lang="en" data-id="a/zLLi6"><a href="//imgur.com/zLLi6">MultiSelect in action</a></blockquote><script async src="//s.imgur.com/min/embed.js" charset="utf-8"></script>
-
+[Imgur](http://i.imgur.com/22RPF0k.gifv)
 
 
