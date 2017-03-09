@@ -20,10 +20,15 @@ The `handleSelectChangeEvent` method could look like this:
         items = event.getParam("values");
         component.set("v.items", items);
     }
-    
-I hope you find this useful :).
+
 
 What it looks like:
-[Imgur](http://i.imgur.com/22RPF0k.gifv)
+[![Multiselect gif][1]][1]
+
+Let me know if you find any bugs.
+
+
+  [1]: http://i.imgur.com/22RPF0k.gif
+
 
 
