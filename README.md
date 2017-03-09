@@ -25,3 +25,9 @@ I hope you find this useful :).
 
 What it looks like:
 http://imgur.com/a/zLLi6
+
+[![Multiselect gif][1]][1]
+
+
+  [1]: http://imgur.com/a/zLLi6
+
