@@ -1,0 +1,45 @@
+<aura:component >
+
+  <aura:attribute name="options" type="SelectItem[]" />
+  <aura:attribute name="options_" type="SelectItem[]" />
+  <aura:attribute name="selectedItems" type="String[]" />
+  <aura:attribute name="infoText" type="String" default="Select an option..." />
+  <aura:attribute name="width" type="String" default="240px;" />
+  <aura:attribute name="dropdownLength" type="Integer" default="5" />
+
+
+  <aura:registerEvent name="selectChange" type="c:SelectChange" />
+
+  <aura:method name="reInit" action="{!c.init}"
+      description="Allows the lookup to be reinitalized">
+  </aura:method>
+
+  <aura:attribute name="dropdownOver" type="Boolean" default="false" />
+
+
+  <div aura:id="main-div"  class=" slds-picklist slds-dropdown-trigger slds-dropdown-trigger--click ">
+    <button class="slds-button slds-button--neutral slds-picklist__label" style="{!'width:' + v.width }" 
+      aria-haspopup="true" onclick="{!c.handleClick}" onmouseleave="{!c.handleMouseOutButton}">
+      <span class="slds-truncate" title="{!v.infoText}">{!v.infoText}</span>
+
+      <lightning:icon iconName="utility:down" size="small" class="slds-icon" />
+    </button>
+
+    <div class="slds-dropdown slds-dropdown--left" onmouseenter="{!c.handleMouseEnter}" onmouseleave="{!c.handleMouseLeave}">
+      <ul class="{!'slds-dropdown__list slds-dropdown--length-' + v.dropdownLength}" role="menu">
+
+        <aura:iteration items="{!v.options_}" var="option">
+          <li class="{!'slds-dropdown__item ' + (option.selected ? 'slds-is-selected' : '')}" 
+            role="presentation" onclick="{!c.handleSelection}" data-value="{!option.value}" data-selected="{!option.selected}">
+            <a href="javascript:void(0);" role="menuitemcheckbox" aria-checked="true" tabindex="0" >
+              <span class="slds-truncate">
+            <lightning:icon iconName="utility:check" size="x-small" class="slds-icon slds-icon--selected slds-icon--x-small slds-icon-text-default slds-m-right--x-small" />{!option.value}
+          </span>
+            </a>
+          </li>
+        </aura:iteration>
+
+      </ul>
+    </div>
+  </div>
+</aura:component>
