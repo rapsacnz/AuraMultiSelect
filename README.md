@@ -30,5 +30,6 @@ Let me know if you find any bugs.
 
   [1]: http://i.imgur.com/22RPF0k.gif
 
+### Acknowledgements: Carl Harmer - my brother - Thanks for your ideas when implementing this component.
 
 
