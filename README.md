@@ -23,6 +23,7 @@ The `handleSelectChangeEvent` method could look like this:
 
 
 What it looks like:
+
 [![Multiselect gif][1]][1]
 
 Let me know if you find any bugs.
