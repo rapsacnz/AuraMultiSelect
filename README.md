@@ -72,6 +72,17 @@ Also note, I've added an init handler to the component.
 Init handler:
 
     <aura:handler name="init" value="{!this}" action="{!c.init}"/>
+    
+## Extra notes:
+You can also use a change handler to handle any changes to your options list after the component is rendered:
+
+    <aura:handler name="change" value="{!options}" action="{!c.init}"/>
+    
+Note, you may need to deal with recursion issues here - make sure your init routine doesn't change the options arrray... as it happens, most of this risk is mitigated as internally, a different list (`options_`) is used.
+
+Finally, if you don't want to use a change handler, you can call this method: `reInit()`. It's a public method on the component that reruns the init method again. 
+
+From outside, you'd typically change the options array, find the multiselect component and call `reInit()`
 
 Let me know if you find any bugs.
 
