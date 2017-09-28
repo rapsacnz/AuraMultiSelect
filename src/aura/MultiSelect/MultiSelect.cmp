@@ -33,7 +33,7 @@
             role="presentation" onclick="{!c.handleSelection}" data-value="{!option.value}" data-selected="{!option.selected}">
             <a href="javascript:void(0);" role="menuitemcheckbox" aria-checked="true" tabindex="0" >
               <span class="slds-truncate">
-            <lightning:icon iconName="utility:check" size="x-small" class="slds-icon slds-icon--selected slds-icon--x-small slds-icon-text-default slds-m-right--x-small" />{!option.value}
+            <lightning:icon iconName="utility:check" size="x-small" class="slds-icon slds-icon--selected slds-icon--x-small slds-icon-text-default slds-m-right--x-small" />{!option.label}
           </span>
             </a>
           </li>

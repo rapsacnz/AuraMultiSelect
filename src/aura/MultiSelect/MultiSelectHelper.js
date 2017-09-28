@@ -1,14 +1,14 @@
 ({
-  setInfoText: function(component, values) {
+  setInfoText: function(component, labels) {
     
-    if (values.length == 0) {
+    if (labels.length == 0) {
       component.set("v.infoText", "Select an option...");
     }
-    if (values.length == 1) {
-      component.set("v.infoText", values[0]);
+    if (labels.length == 1) {
+      component.set("v.infoText", labels[0]);
     }
     else if (values.length > 1) {
-      component.set("v.infoText", values.length + " options selected");
+      component.set("v.infoText", labels.length + " options selected");
     }
   },
 
