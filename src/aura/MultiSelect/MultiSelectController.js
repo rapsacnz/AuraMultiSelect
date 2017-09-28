@@ -59,8 +59,8 @@
         var values = helper.getSelectedValues(component);
         var labels = helper.getSelectedLabels(component);
         
-        helper.setInfoText(component,values);
-        helper.despatchSelectChangeEvent(component,labels);
+        helper.setInfoText(component,labels);
+        helper.despatchSelectChangeEvent(component,values);
 
       }
     },
