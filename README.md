@@ -3,14 +3,9 @@ A Lightning Multi-Select Picklist.
 
 To use, simply add as part of a form (or without if you'd like):
 
-    <div class="slds-form-element">
-        <label class="slds-form-element__label" for="my-multi-select">Multi Select!!</label>
-        <div class="slds-form-element__control">
-            <c:MultiSelect aura:id="my-multi-select" options="{!v.myOptions}" selectChange="{!c.handleSelectChangeEvent}" selectedItems="{!v.mySelectedItems}" />
-        </div>
-    </div>
+    <c:MultiSelect aura:id="my-multi-select" options="{!v.options}" selectChange="{!c.handleSelectChangeEvent}" selectedItems="{!v.mySelectedItems}" />
     
-The multiselect `options` are an array of type `SelectItem[]` and selectedItems is a comma delimited string (`String[]`).
+The multiselect `options` are an array of objects eg `{label:'label',value:'value'}` and selectedItems is a comma delimited string (`String[]`).
 
 The `handleSelectChangeEvent` method could look like this:
 
@@ -25,6 +20,7 @@ The `handleSelectChangeEvent` method could look like this:
 What it looks like:
 
 [![Multiselect gif][1]][1]
+
 
 ## Extended Implementation Example
 
@@ -61,17 +57,23 @@ Also note, I've added an init handler to the component.
         'value': 'Qualifying Documentation Review'
        }]"/>
         
-        <div class="slds-form-element">
-        <label class="slds-form-element__label" for="my-multi-select">Multi Select!!</label>
-        <div class="slds-form-element__control">
-            <c:MultiSelect options="{!v.options}"/>
-        </div>
-    </div>
+       <c:MultiSelect options="{!v.options}" label="Testing Testing" />
+    
     </aura:application>
     
 Init handler:
 
     <aura:handler name="init" value="{!this}" action="{!c.init}"/>
+    
+## UPDATE 2018-06-14:
+- Changed structure to make a slds form item. If you don't want that, just remove this div.
+- Added a label attribute. 
+- Added a variant attribute. Set to 'label-hidden' to hide the label.
+- Options are now just regular javascript objects.
+- Updated this file with new usage structure.
+- Loading now runs once on init. A flag prevents this method being called again on options change unless reset.
+- Call reInit() to load again.
+
     
 ## Extra notes:
 You can also use a change handler to handle any changes to your options list after the component is rendered:
