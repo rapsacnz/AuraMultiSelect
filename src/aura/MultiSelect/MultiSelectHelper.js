@@ -1,14 +1,42 @@
 ({
-  setInfoText: function(component, labels) {
+  init: function(component) {
+
+    //note, we get options and set options_
+    //options_ is the private version and we use this from now on.
+    //this is to allow us to sort the options array before rendering
+    if (component.get("v.initialized")){
+      return;
+    }
+    component.set("v.initialized",true);
+
+    var options = component.get("v.options");
+    options.sort(function compare(a, b) {
+      if (a.value == 'All') {
+        return -1;
+      } else if (a.value < b.value) {
+        return -1;
+      }
+      if (a.value > b.value) {
+        return 1;
+      }
+      return 0;
+    });
+
+    component.set("v.options_", options);
+    var values = this.getSelectedValues(component);
+    this.setInfoText(component, values);
+  },  
+
+  setInfoText: function(component, values) {
     
-    if (labels.length == 0) {
+    if (values.length == 0) {
       component.set("v.infoText", "Select an option...");
     }
-    if (labels.length == 1) {
-      component.set("v.infoText", labels[0]);
+    if (values.length == 1) {
+      component.set("v.infoText", values[0]);
     }
     else if (values.length > 1) {
-      component.set("v.infoText", labels.length + " options selected");
+      component.set("v.infoText", values.length + " options selected");
     }
   },
 

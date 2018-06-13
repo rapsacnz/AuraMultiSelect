@@ -1,45 +1,60 @@
-<aura:component >
+<aura:component>
 
-  <aura:attribute name="options" type="SelectItem[]" />
-  <aura:attribute name="options_" type="SelectItem[]" />
+  <aura:attribute name="options" type="Object[]" />
+
   <aura:attribute name="selectedItems" type="String[]" />
   <aura:attribute name="infoText" type="String" default="Select an option..." />
+  <aura:attribute name="label" type="String" default="" />
+  <aura:attribute name="variant" type="String" default="" description="to hide label, add 'label-hidden' as a variant" />
   <aura:attribute name="width" type="String" default="240px;" />
   <aura:attribute name="dropdownLength" type="Integer" default="5" />
 
-
   <aura:registerEvent name="selectChange" type="c:SelectChange" />
 
-  <aura:method name="reInit" action="{!c.init}"
-      description="Allows the lookup to be reinitalized">
+  <aura:method name="reInit" action="{!c.reInit}" description="Allows the lookup to be reinitalized">
   </aura:method>
 
+  <aura:handler name="init" value="{!this}" action="{!c.init}" />
+
   <aura:attribute name="dropdownOver" type="Boolean" default="false" />
+  <aura:attribute name="initialized" type="Boolean" default="false" />
+  <aura:attribute name="options_" type="Object[]" />
 
 
-  <div aura:id="main-div"  class=" slds-picklist slds-dropdown-trigger slds-dropdown-trigger--click ">
-    <button class="slds-button slds-button--neutral slds-picklist__label" style="{!'width:' + v.width }" 
-      aria-haspopup="true" onclick="{!c.handleClick}" onmouseleave="{!c.handleMouseOutButton}">
-      <span class="slds-truncate" title="{!v.infoText}">{!v.infoText}</span>
+  <div class="slds-form-element" style="{!'width:' + v.width }">
+    <label class="{!if (v.variant == 'label-hidden' , 'slds-hide' , 'slds-form-element__label')}" for="combobox-id-1">{!v.label}</label>
+    <div class="slds-form-element__control">
+      <div class="slds-combobox_container">
+        <div aura:id="main-div" class="slds-combobox slds-dropdown-trigger slds-dropdown-trigger_click" aria-expanded="false" aria-haspopup="listbox" role="combobox">
+          <div class="slds-combobox__form-element slds-input-has-icon slds-input-has-icon_right" role="none">
+            <input type="text" class="slds-input slds-combobox__input" id="combobox-id-1" aria-controls="listbox-id-1" autoComplete="off" role="textbox" placeholder="{!v.infoText}" readonly="" onclick="{!c.handleClick}" onmouseleave="{!c.handleMouseOutButton}" />
+            <span class="slds-icon_container slds-icon-utility-down slds-input__icon slds-input__icon_right">
+              <lightning:icon iconName="utility:down" size="x-small" class="slds-icon slds-icon slds-icon_x-small slds-icon-text-default" />
+            </span>
+          </div>
 
-      <lightning:icon iconName="utility:down" size="small" class="slds-icon" />
-    </button>
+          <div class="{!'slds-dropdown  slds-dropdown_fluid slds-dropdown_length-5' + v.dropdownLength}" onmouseenter="{!c.handleMouseEnter}" onmouseleave="{!c.handleMouseLeave}" role="listbox">
+            <ul class="slds-listbox slds-listbox_vertical" role="presentation">
+              <aura:iteration items="{!v.options_}" var="option">
+                <li class="slds-listbox__item" role="presentation" onclick="{!c.handleSelection}" data-value="{!option.value}" data-selected="{!option.selected}">
+                  <div class="{!' slds-media  slds-listbox__option_plain slds-media_small slds-listbox__option ' + (option.selected == true ? ' slds-is-selected' : '')}" role="option">
+                    <span class="slds-media__figure">
+                      <lightning:icon iconName="utility:check" size="x-small" class="slds-icon-utility-check slds-current-color slds-listbox__icon-selected slds-icon_container" />
+                    </span>
 
-    <div class="slds-dropdown slds-dropdown--left" onmouseenter="{!c.handleMouseEnter}" onmouseleave="{!c.handleMouseLeave}">
-      <ul class="{!'slds-dropdown__list slds-dropdown--length-' + v.dropdownLength}" role="menu">
+                    <span class="slds-media__body">
+                      <span class="slds-truncate" title="{!option.label}">&nbsp;{!option.label}</span>
+                    </span>
+                  </div>
 
-        <aura:iteration items="{!v.options_}" var="option">
-          <li class="{!'slds-dropdown__item ' + (option.selected ? 'slds-is-selected' : '')}" 
-            role="presentation" onclick="{!c.handleSelection}" data-value="{!option.value}" data-selected="{!option.selected}">
-            <a href="javascript:void(0);" role="menuitemcheckbox" aria-checked="true" tabindex="0" >
-              <span class="slds-truncate">
-            <lightning:icon iconName="utility:check" size="x-small" class="slds-icon slds-icon--selected slds-icon--x-small slds-icon-text-default slds-m-right--x-small" />{!option.label}
-          </span>
-            </a>
-          </li>
-        </aura:iteration>
+                </li>
+              </aura:iteration>
+            </ul>
+          </div>
 
-      </ul>
+
+        </div>
+      </div>
     </div>
   </div>
 </aura:component>
