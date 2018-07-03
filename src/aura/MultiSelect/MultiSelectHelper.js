@@ -23,8 +23,8 @@
     });
 
     component.set("v.options_", options);
-    var values = this.getSelectedValues(component);
-    this.setInfoText(component, values);
+    var labels = this.getSelectedLabels(component);
+    this.setInfoText(component, labels);
   },  
 
   setInfoText: function(component, values) {
