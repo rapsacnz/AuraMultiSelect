@@ -1,24 +1,34 @@
 <aura:component>
 
+  <!-- aura attributes -->
   <aura:attribute name="options" type="Object[]" />
-
   <aura:attribute name="selectedItems" type="String[]" />
   <aura:attribute name="infoText" type="String" default="Select an option..." />
   <aura:attribute name="label" type="String" default="" />
   <aura:attribute name="variant" type="String" default="" description="to hide label, add 'label-hidden' as a variant" />
   <aura:attribute name="width" type="String" default="240px;" />
   <aura:attribute name="dropdownLength" type="Integer" default="5" />
-
-  <aura:registerEvent name="selectChange" type="c:SelectChange" />
-
-  <aura:method name="reInit" action="{!c.reInit}" description="Allows the lookup to be reinitalized">
-  </aura:method>
-
-  <aura:handler name="init" value="{!this}" action="{!c.init}" />
-
   <aura:attribute name="dropdownOver" type="Boolean" default="false" />
   <aura:attribute name="initialized" type="Boolean" default="false" />
   <aura:attribute name="options_" type="Object[]" />
+  <!-- aura attributes -->
+
+  <!-- aura events -->
+  <aura:registerEvent name="selectChange" type="c:SelectChange" />
+  <!-- aura events -->
+
+  <!-- aura handlers -->
+  <aura:handler name="init" value="{!this}" action="{!c.init}"/>
+  <aura:handler name="change" value="{!v.options}" action="{!c.reInit}"/>
+  <!-- aura handlers -->
+
+  <!-- aura methods -->
+  <aura:method name="reInit" action="{!c.reInit}" description="Allows the lookup to be reinitalized">
+  </aura:method>
+  <!-- aura methods -->
+
+
+
 
 
   <div class="slds-form-element" style="{!'width:' + v.width }">
