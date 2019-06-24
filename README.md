@@ -1,6 +1,8 @@
 # MultiSelect
 A Lightning Multi-Select Picklist.
 
+## I have an lwc version available: https://github.com/rapsacnz/lwcMultiSelect check it out - it uses pills to show the chosen items, which I think is cool.
+
 To use, simply add as part of a form (or without if you'd like):
 
     <c:MultiSelect aura:id="my-multi-select" options="{!v.options}" selectChange="{!c.handleSelectChangeEvent}" selectedItems="{!v.mySelectedItems}" />
