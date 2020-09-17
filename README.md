@@ -1,4 +1,4 @@
-# MultiSelect
+# AuraMultiSelect
 A Lightning Multi-Select Picklist.
 
 ## I have an lwc version available: https://github.com/rapsacnz/lwcMultiSelect check it out - it uses pills to show the chosen items, which I think is cool.
